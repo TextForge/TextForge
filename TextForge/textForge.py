@@ -43,6 +43,8 @@ def extract_features(dataframe, file_name, current_features , config_dict):
             "TextFeatureTaxonomyMetrics": True,
             "AutoMLFeatures": True
         }
+    else:
+        config = config_dict
 
 
 
