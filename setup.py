@@ -1,17 +1,17 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(
     name="TextForge",
-    version="0.0.5",
+    version="0.0.6",
     description="TextForge Metadata Extraction Library",
-    packages=["TextForge"],
+    packages=find_packages(include=['TextForge', 'TextForge.*']),
     install_requires=[
-        "numpy",
-        "pandas",
-        "textstat",
-        "scipy",
-        "nltk",
-        "scikit-learn",
-        "textblob"
+        # "numpy",
+        # "pandas",
+        # "textstat",
+        # "scipy",
+        # "nltk",
+        # "scikit-learn",
+        # "textblob"
     ]
 )
