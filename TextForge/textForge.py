@@ -18,8 +18,8 @@ from TextForge.metafeature_models import (
 import pandas as pd
 import time
 
-def extract_features(file_name, current_features):
-    dataframe = pd.read_csv(file_name).dropna()
+def extract_features(dataframe, current_features):
+    dataframe = dataframe.dropna()
     dataframe = dataframe.groupby('label').filter(lambda x: len(x) > 10)
     dataframe['text'] = dataframe['text'].str.lower()
 
