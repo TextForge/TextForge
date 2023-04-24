@@ -1,8 +1,6 @@
 import numpy as np
 import nltk
-from util.computeArrayStatistics import generateArrayStatistics
-from scipy.stats import describe
-from scipy.stats import entropy
+from TextForge.util.computeArrayStatistics import generateArrayStatistics
 import time
 
 def get_vocabulary_metrics(dataframe):

@@ -2,7 +2,7 @@
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
 from sklearn.decomposition import TruncatedSVD
 from scipy.stats import describe
-from util.computeArrayStatistics import generateArrayStatistics
+from TextForge.util.computeArrayStatistics import generateArrayStatistics
 
 import time
 

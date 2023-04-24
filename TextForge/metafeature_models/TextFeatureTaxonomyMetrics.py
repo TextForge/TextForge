@@ -5,7 +5,7 @@ import pyphen
 from nltk.corpus import cmudict
 from textblob import TextBlob
 
-from util.computeArrayStatistics import generateArrayStatistics
+from TextForge.util.computeArrayStatistics import generateArrayStatistics
 
 # Load the English language tokenizer from nltk
 tokenizer = nltk.tokenize.TreebankWordTokenizer()

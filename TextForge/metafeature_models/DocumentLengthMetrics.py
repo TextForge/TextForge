@@ -1,5 +1,5 @@
 import numpy as np
-from util.computeArrayStatistics import generateArrayStatistics
+from TextForge.util.computeArrayStatistics import generateArrayStatistics
 from scipy.stats import describe
 from scipy.stats import entropy
 import time
