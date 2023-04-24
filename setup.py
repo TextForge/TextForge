@@ -1,10 +1,10 @@
 from setuptools import setup
 
 setup(
-    name="textforge-metafeatures",
+    name="TextForge",
     version="0.0.2",
     description="TextForge Metadata Extraction Library",
-    packages=["textforge-metafeatures"],
+    packages=["TextForge"],
     install_requires=[
         "numpy",
         "pandas",
