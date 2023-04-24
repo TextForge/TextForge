@@ -1,6 +1,6 @@
 import numpy as np
 
-from metafeature_models import (
+from TextForge.metafeature_models import (
     AutoMLFeatures,
     CategoryDocumentFrequencyFeatures,
     InitialFeatures,
