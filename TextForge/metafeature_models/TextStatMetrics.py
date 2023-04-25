@@ -46,20 +46,18 @@ def get_textstat_metrics(dataframe):
 
     flesch_kincaid_grade = textstat.flesch_kincaid_grade(all_text)
     flesch_kincaid_grade = cap_the_values(flesch_kincaid_grade, 0, 15)
-
-    if flesch_kincaid_grade > 15:
-        flesch_kincaid_grade = 15
     check_value(flesch_kincaid_grade, "flesch_kincaid_grade")
 
     smog_index = textstat.smog_index(all_text)
+    smog_index = cap_the_values(smog_index, 0, 20)
     check_value(smog_index, "smog_index")
 
     coleman_liau_index = textstat.coleman_liau_index(all_text)
+    coleman_liau_index = cap_the_values(coleman_liau_index, 0, 25)
     check_value(coleman_liau_index, "coleman_liau_index")
 
     automated_readability_index = textstat.automated_readability_index(all_text)
     automated_readability_index = cap_the_values(automated_readability_index, 0, 15)
-    
     check_value(automated_readability_index, "automated_readability_index")
 
     dale_chall_readability_score = textstat.dale_chall_readability_score(all_text)
@@ -70,12 +68,12 @@ def get_textstat_metrics(dataframe):
     check_value(difficult_words, "difficult_words")
 
     linsear_write_formula = textstat.linsear_write_formula(all_text)
+    linsear_write_formula = cap_the_values(linsear_write_formula, 0, 25)
     check_value(linsear_write_formula, "linsear_write_formula")
 
     gunning_fog = textstat.gunning_fog(all_text)
     gunning_fog = cap_the_values(gunning_fog, 0, 25)
     check_value(gunning_fog, "gunning_fog")
-
 
     text_standard = textstat.text_standard(all_text)
 

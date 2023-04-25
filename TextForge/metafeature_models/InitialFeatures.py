@@ -31,7 +31,14 @@ def get_initial_features(dataframe):
     })
 
     # Average word length
-    avg_word_length = sum(len(word) for word in all_words) / len(all_words)
+
+    #check if len(all_words) is 0 
+    if len(all_words) > 0:
+        avg_word_length = sum(len(word) for word in all_words) / len(all_words)
+    else:
+        avg_word_length = 0
+
+
     output_list.append({
         
         "feature": "Average Word Length",
