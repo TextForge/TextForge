@@ -64,6 +64,7 @@ def get_textstat_metrics(dataframe):
     dale_chall_readability_score = cap_the_values(dale_chall_readability_score, 0, 10)
     check_value(dale_chall_readability_score, "dale_chall_readability_score")
 
+    print("Number of words: ", len(all_text.split()))
     difficult_words = textstat.difficult_words(all_text)*100/len(all_text.split())
     check_value(difficult_words, "difficult_words")
 
