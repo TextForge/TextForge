@@ -27,7 +27,8 @@ def verify_data(dataframe):
     
     # Check number of unique values in 'label' column
     num_unique_labels = len(dataframe['label'].unique())
-    print("Number of unique labels:", num_unique_labels)
+    if num_unique_labels < 2:
+        print("Error: 'label' column must have at least 2 unique values")
     
     # Check if every unique label has more than 2 rows
     for label in dataframe['label'].unique():
@@ -44,6 +45,14 @@ def verify_data(dataframe):
     if num_rows_with_stop_words == len(dataframe):
         print("Error: 'text' column only contains stop words")
         return
+
+    # Check if every label has at least one text with more than 10 words
+    for label in dataframe['label'].unique():
+        label_df = dataframe[dataframe['label'] == label]
+        concat_text = ' '.join(label_df['text'].tolist())
+        if len(concat_text.split()) < 5:
+            print("Error: Label '", label, "' has a total of less than 5 words")
+            return
 
 
 def extract_features(dataframe, file_name, current_features , config_dict):

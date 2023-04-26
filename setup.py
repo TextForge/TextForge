@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="TextForge",
-    version="0.1.3",
+    version="0.1.4",
     description="TextForge Metadata Extraction Library",
     packages=find_packages(include=['TextForge', 'TextForge.*']),
     install_requires=[
