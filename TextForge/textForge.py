@@ -1,27 +1,59 @@
-import numpy as np
-
-from TextForge.metafeature_models import (
-    AutoMLFeatures,
-    CategoryDocumentFrequencyFeatures,
-    InitialFeatures,
-    HardnessFeatures,
-    LandmarkingMetrics,
-    MUDOF,
-    PartOfSpeechTaggingMetrics,
-    PrincipalComponentAnalysisFeatures,
-    TextFeatureTaxonomyMetrics,
-    TextStatMetrics,
-    VocabularyMetrics,
-    DocumentLengthMetrics,
-)
-
-import pandas as pd
 import time
 
+import nltk
+import pandas as pd
+
+from TextForge.metafeature_models import (MUDOF, AutoMLFeatures,
+                                          CategoryDocumentFrequencyFeatures,
+                                          DocumentLengthMetrics,
+                                          HardnessFeatures, InitialFeatures,
+                                          LandmarkingMetrics,
+                                          PartOfSpeechTaggingMetrics,
+                                          PrincipalComponentAnalysisFeatures,
+                                          TextFeatureTaxonomyMetrics,
+                                          TextStatMetrics, VocabularyMetrics)
+
+
+def verify_data(dataframe):
+    
+    # Check if dataframe has 'text' and 'label' columns
+    if 'text' not in dataframe.columns or 'label' not in dataframe.columns:
+        print("Error: DataFrame must have 'text' and 'label' columns")
+        return
+    
+    # Check for null values
+    if dataframe.isnull().values.any():
+        print("Warning: DataFrame contains null values")
+    
+    # Check number of unique values in 'label' column
+    num_unique_labels = len(dataframe['label'].unique())
+    print("Number of unique labels:", num_unique_labels)
+    
+    # Check if every unique label has more than 2 rows
+    for label in dataframe['label'].unique():
+        if len(dataframe[dataframe['label'] == label]) < 2:
+            print("Error: Label '", label, "' has less than 2 rows")
+            return
+    
+    # Check if 'text' column only contains stop words
+    stop_words = set(nltk.corpus.stopwords.words('english'))
+    num_rows_with_stop_words = 0
+    for text in dataframe['text']:
+        if all(word.lower() in stop_words for word in text.split()):
+            num_rows_with_stop_words += 1
+    if num_rows_with_stop_words == len(dataframe):
+        print("Error: 'text' column only contains stop words")
+        return
+
+
 def extract_features(dataframe, file_name, current_features , config_dict):
+    # Verify the data
+    verify_data(dataframe)
     dataframe = dataframe.dropna()
     # dataframe = dataframe.groupby('label').filter(lambda x: len(x) > 10)
     dataframe['text'] = dataframe['text'].str.lower()
+
+
 
     # Create an empty list to store the output features
     output_list = []
