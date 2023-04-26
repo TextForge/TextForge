@@ -13,28 +13,27 @@ from TextForge.metafeature_models import (MUDOF, AutoMLFeatures,
                                           TextFeatureTaxonomyMetrics,
                                           TextStatMetrics, VocabularyMetrics)
 
+import nltk
 
 def verify_data(dataframe):
     
     # Check if dataframe has 'text' and 'label' columns
     if 'text' not in dataframe.columns or 'label' not in dataframe.columns:
-        print("Error: DataFrame must have 'text' and 'label' columns")
-        return
+        raise ValueError("DataFrame must have 'text' and 'label' columns")
     
     # Check for null values
     if dataframe.isnull().values.any():
-        print("Warning: DataFrame contains null values")
+        raise ValueError("DataFrame contains null values")
     
     # Check number of unique values in 'label' column
     num_unique_labels = len(dataframe['label'].unique())
     if num_unique_labels < 2:
-        print("Error: 'label' column must have at least 2 unique values")
+        raise ValueError("'label' column must have at least 2 unique values")
     
     # Check if every unique label has more than 2 rows
     for label in dataframe['label'].unique():
         if len(dataframe[dataframe['label'] == label]) < 2:
-            print("Error: Label '", label, "' has less than 2 rows")
-            return
+            raise ValueError("Label '{}' has less than 2 rows".format(label))
     
     # Check if 'text' column only contains stop words
     stop_words = set(nltk.corpus.stopwords.words('english'))
@@ -43,16 +42,17 @@ def verify_data(dataframe):
         if all(word.lower() in stop_words for word in text.split()):
             num_rows_with_stop_words += 1
     if num_rows_with_stop_words == len(dataframe):
-        print("Error: 'text' column only contains stop words")
-        return
-
+        raise ValueError("'text' column only contains stop words")
+    
     # Check if every label has at least one text with more than 10 words
     for label in dataframe['label'].unique():
         label_df = dataframe[dataframe['label'] == label]
         concat_text = ' '.join(label_df['text'].tolist())
         if len(concat_text.split()) < 5:
-            print("Error: Label '", label, "' has a total of less than 5 words")
-            return
+            raise ValueError("Label '{}' has a total of less than 5 words".format(label))
+    
+    # Data is valid if no errors have been raised
+    return True
 
 
 def extract_features(dataframe, file_name, current_features , config_dict):
