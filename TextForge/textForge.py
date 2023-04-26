@@ -20,7 +20,7 @@ import time
 
 def extract_features(dataframe, file_name, current_features , config_dict):
     dataframe = dataframe.dropna()
-    dataframe = dataframe.groupby('label').filter(lambda x: len(x) > 10)
+    # dataframe = dataframe.groupby('label').filter(lambda x: len(x) > 10)
     dataframe['text'] = dataframe['text'].str.lower()
 
     # Create an empty list to store the output features
