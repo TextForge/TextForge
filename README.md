@@ -76,3 +76,5 @@ features.to_csv('features.csv', index=False)
 ## Conclusion
 
 You should now be able to use TextForge on GitHub by following these instructions. If you have any questions or encounter any issues, please refer to the documentation or open an issue on the GitHub repository.
+
+See sample_code.ipynb for a sample on how to use this package
