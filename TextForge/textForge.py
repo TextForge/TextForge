@@ -57,6 +57,7 @@ def verify_data(dataframe):
 
 def extract_features(dataframe, file_name, current_features , config_dict):
     # Verify the data
+    print("Verifying data...")
     verify_data(dataframe)
     dataframe = dataframe.dropna()
     # dataframe = dataframe.groupby('label').filter(lambda x: len(x) > 10)
@@ -106,8 +107,6 @@ def extract_features(dataframe, file_name, current_features , config_dict):
 
     features = [f for f in features if f is not None]
 
-
-
     for function, message in features:
         print(message)
         start_time = time.time()
@@ -116,8 +115,13 @@ def extract_features(dataframe, file_name, current_features , config_dict):
         end_time = time.time()
         print(f'Time taken: {round((end_time - start_time),0)} seconds')
 
+    print(output_df)
     # Convert the list of dictionaries to a Pandas DataFrame
     output_df = pd.DataFrame(output_list)
+    print(output_df)
+
+    
+    return output_df
 
 
     # # Explode the 'value' column into multiple rows in the cases where the value is a list
@@ -131,30 +135,26 @@ def extract_features(dataframe, file_name, current_features , config_dict):
 
     # output_df['feature'] = output_df['feature'].str.replace('_0', '')
 
-
-
-
-
     # return output_df
 
     # Drop the old key and suffix columns and keep only the feature and value columns
-    output_df = output_df[['feature', 'value']]
+    # output_df = output_df[['feature', 'value']]
 
     # Reset the index of the DataFrame
-    output_df = output_df.reset_index(drop=True)
+    # output_df = output_df.reset_index(drop=True)
 
     # Create a new dataframe with 1 row
-    new_df = pd.DataFrame(columns=output_df['feature'].unique(), index=[0])
+    # new_df = pd.DataFrame(columns=output_df['feature'].unique(), index=[0])
 
     # Loop through each row in the original dataframe and add values to the new dataframe
-    for _, row in output_df.iterrows():
-        feature_name = row['feature']
-        value = row['value']
-        new_df.loc[0, feature_name] = value
+    # for _, row in output_df.iterrows():
+    #     feature_name = row['feature']
+    #     value = row['value']
+    #     new_df.loc[0, feature_name] = value
 
     # Add a 'dataset' column and move it to the first column
-    new_df['dataset'] = file_name
-    new_df = new_df[['dataset'] + list(new_df.columns[:-1])]
+    # new_df['dataset'] = file_name
+    # new_df = new_df[['dataset'] + list(new_df.columns[:-1])]
 
     # Return the new dataframe
-    return new_df
+    # return new_df
