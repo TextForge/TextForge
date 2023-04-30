@@ -1,0 +1,12 @@
+[package]
+name = "main"
+version = "0.1.0"
+edition = "2018"
+
+[dependencies]
+pandas = "0.10.2"
+regex = "1.5.4"
+
+[[bin]]
+name = "my_binary"
+path = "main.rs"

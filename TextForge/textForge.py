@@ -106,8 +106,6 @@ def extract_features(dataframe, file_name, current_features , config_dict):
 
     features = [f for f in features if f is not None]
 
-
-
     for function, message in features:
         print(message)
         start_time = time.time()
@@ -118,6 +116,8 @@ def extract_features(dataframe, file_name, current_features , config_dict):
 
     # Convert the list of dictionaries to a Pandas DataFrame
     output_df = pd.DataFrame(output_list)
+
+    return output_df
 
 
     # # Explode the 'value' column into multiple rows in the cases where the value is a list
@@ -130,10 +130,6 @@ def extract_features(dataframe, file_name, current_features , config_dict):
     # output_df['feature'] = output_df['feature'] + output_df['suffix'].astype(str)
 
     # output_df['feature'] = output_df['feature'].str.replace('_0', '')
-
-
-
-
 
     # return output_df
 

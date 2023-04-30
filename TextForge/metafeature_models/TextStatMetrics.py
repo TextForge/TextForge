@@ -88,10 +88,6 @@ def get_textstat_metrics(dataframe):
     check_value(lower_text_standard, "lower_text_standard")
     check_value(higher_text_standard, "higher_text_standard")
 
-
-
-    
-
     output_list.append({
         
         "feature": "Flesch Reading Ease",
@@ -164,7 +160,6 @@ def get_textstat_metrics(dataframe):
         "category": "Textstat measures"
     })
 
-
     output_list.append({
         
         "feature": "Lower Text Standard",
@@ -172,7 +167,6 @@ def get_textstat_metrics(dataframe):
         "description": "The standardized level of text complexity based on the Common Core State Standards.",
         "category": "Textstat measures"
     })
-
 
     output_list.append({
         
@@ -182,8 +176,6 @@ def get_textstat_metrics(dataframe):
         "category": "Textstat measures"
     })
 
-   
-
     output_list.append({
         
         "feature": "Textstat measures Time",
@@ -191,6 +183,5 @@ def get_textstat_metrics(dataframe):
         "description": "The time it took to calculate the textstat measures.",
         "category": "Textstat measures"
     })
-    
 
     return output_list
