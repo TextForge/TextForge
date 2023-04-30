@@ -119,6 +119,8 @@ def extract_features(dataframe, file_name, current_features , config_dict):
     # Convert the list of dictionaries to a Pandas DataFrame
     output_df = pd.DataFrame(output_list)
     print(output_df)
+
+    
     return output_df
 
 
