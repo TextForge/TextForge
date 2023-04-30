@@ -115,7 +115,6 @@ def extract_features(dataframe, file_name, current_features , config_dict):
         end_time = time.time()
         print(f'Time taken: {round((end_time - start_time),0)} seconds')
 
-    print(output_df)
     # Convert the list of dictionaries to a Pandas DataFrame
     output_df = pd.DataFrame(output_list)
     print(output_df)
