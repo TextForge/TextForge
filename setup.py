@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="TextForge",
-    version="0.1.8",
+    version="0.1.9",
     description="TextForge Metadata Extraction Library",
     packages=find_packages(include=['TextForge', 'TextForge.*']),
     install_requires=[
@@ -11,7 +11,7 @@ setup(
         # "textstat",
         # "scipy",
         # "nltk",
-        # "scikit-learn",
+        # "scikit-learns",
         # "textblob"
     ]
 )
